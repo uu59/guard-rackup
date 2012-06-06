@@ -1,0 +1,39 @@
+`guard-rackup` is an alternative of [shotgun](https://github.com/rtomayko/shotgun/)
+
+# Install
+
+    $ gem i guard-rackup
+
+Or add it your Gemfile:
+
+    $ gem "guard-rackup"
+    $ bundle install
+
+And then add a basic setup to your Guardfile:
+
+    $ guard init rackup
+
+# Usage
+
+Please reada [Guard document](https://github.com/guard/guard#readme)
+
+
+# Guardfile
+
+    guard "rackup" do
+      watch(%r{^app/.*\.rb$})
+      watch(%r{^lib/.*\.rb$})
+      ...
+    end
+
+Or
+
+    guard "rackup",
+      :command => "unicorn ./config.ru -E development",
+      :start => proc{ Process.spawn(command) },
+      :stop => proc{|pid| Process.kill("QUIT", pid)},
+      :reload => proc{ Process.kill("HUP", @pid) }
+      do
+      watch ...
+    end
+

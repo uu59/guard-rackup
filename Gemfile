@@ -1,3 +1,5 @@
+source :rubygems
+
 gem "bundler"
 gem "simplecov", :require => false
 gem "guard"
